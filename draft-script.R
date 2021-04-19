@@ -1,9 +1,3 @@
-library(tidyverse)
-
-PL_raw_data <- read_csv("data/sportsref_download_PL_210419.csv")
-LaLiga_raw_data <- read_csv("data/sportsref_download_LaLiga_210419.csv")
-SerieA_raw_data <- read_csv("data/sportsref_download_SerieA_210419.csv")
-
 # Matches that haven't been played are filtered out
 
 Big6 <- c("Arsenal", "Chelsea", "Liverpool", "Manchester City", "Manchester Utd", "Tottenham")
@@ -42,7 +36,3 @@ Updated_League_Table <- function(League_Data){
             "Points_Gain" = O14_Points - Points) %>%
   arrange(desc(O14_Points))
 }
-
-SerieA_raw_data %>%
-  Tidy_Data() %>%
-  Updated_League_Table()

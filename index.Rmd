@@ -4,10 +4,19 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    source_code: embed
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(DT)
+library(tidyverse)
+
+source("draft-script.R")
+
+PL_raw_data <- read_csv("data/sportsref_download_PL_210419.csv")
+LaLiga_raw_data <- read_csv("data/sportsref_download_LaLiga_210419.csv")
+SerieA_raw_data <- read_csv("data/sportsref_download_SerieA_210419.csv")
 ```
 
 Column {data-width=650}
@@ -16,19 +25,18 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
-
+SerieA_raw_data %>%
+  Tidy_Data() %>%
+  Updated_League_Table() %>%
+  DT::datatable(rownames = T,
+                options = list(scroller = TRUE)
+  )
 ```
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
 ### Chart B
-
-```{r}
-
-```
-
-### Chart C
 
 ```{r}
 
