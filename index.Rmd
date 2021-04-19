@@ -19,21 +19,46 @@ LaLiga_raw_data <- read_csv("data/sportsref_download_LaLiga_210419.csv")
 SerieA_raw_data <- read_csv("data/sportsref_download_SerieA_210419.csv")
 ```
 
-Column {data-width=650}
+Column {.tabset}
 -----------------------------------------------------------------------
 
-### Chart A
+### English Premier League
 
 ```{r}
-SerieA_raw_data %>%
+PL_raw_data %>%
   Tidy_Data() %>%
   Updated_League_Table() %>%
+  filter(Points_Gain >= 0) %>%
   DT::datatable(rownames = T,
                 options = list(scroller = TRUE)
   )
 ```
 
-Column {data-width=350}
+### Italian Serie A
+
+```{r}
+SerieA_raw_data %>%
+  Tidy_Data() %>%
+  Updated_League_Table() %>%
+  filter(Points_Gain >= 0) %>%
+  DT::datatable(rownames = T,
+                options = list(scroller = TRUE)
+  )
+```
+
+### Spanish La Liga
+
+```{r}
+LaLiga_raw_data %>%
+  Tidy_Data() %>%
+  Updated_League_Table() %>%
+  filter(Points_Gain >= 0) %>%
+  DT::datatable(rownames = T,
+                options = list(scroller = TRUE)
+  )
+```
+
+Column
 -----------------------------------------------------------------------
 
 ### Chart B
