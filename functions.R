@@ -36,3 +36,14 @@ Updated_League_Table <- function(League_Data){
             "Points_Gain" = O14_Points - Points) %>%
   arrange(desc(O14_Points))
 }
+
+Create_DataTable <- function(League_Table){
+  DT::datatable(League_Table,
+                fillContainer = T,
+                rownames = T,
+                extensions = c("Buttons", "Scroller"),
+                options = list(pageLength = 20,
+                               dom = 'Bfrti',
+                               buttons = c('copy', 'csv'))
+  )
+}
